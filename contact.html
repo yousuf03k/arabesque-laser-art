@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact — Arabesque Laser Art, LLC.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy-dark: #162d55;
+      --navy-mid: #2a4a8a;
+      --text-dark: #1a1a2e;
+      --text-mid: #444;
+    }
+    body { font-family: 'Raleway', sans-serif; color: var(--text-dark); background: #fff; overflow-x: hidden; }
+
+    /* NAV */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 60px; background: #fff; border-bottom: 1px solid #eee;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+    .nav-logo svg { width: 52px; height: 64px; }
+    .nav-logo-text { font-size: 1.1rem; font-weight: 700; color: var(--text-dark); letter-spacing: 0.04em; text-transform: uppercase; }
+    .nav-logo-text span { font-weight: 300; }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a { text-decoration: none; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dark); transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--navy-mid); }
+
+    /* CONTACT HERO BANNER */
+    .contact-hero {
+      background: var(--navy-mid);
+      position: relative;
+      overflow: hidden;
+      padding: 64px 60px 56px;
+      text-align: center;
+    }
+    .contact-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 38px, rgba(255,255,255,0.07) 38px, rgba(255,255,255,0.07) 40px),
+        repeating-linear-gradient(90deg, transparent, transparent 38px, rgba(255,255,255,0.07) 38px, rgba(255,255,255,0.07) 40px);
+      pointer-events: none;
+    }
+    .contact-hero-deco {
+      position: absolute; top: 0; bottom: 0; width: 260px;
+      opacity: 0.18; pointer-events: none;
+    }
+    .contact-hero-deco.left  { left: -40px; }
+    .contact-hero-deco.right { right: -40px; transform: scaleX(-1); }
+    .contact-hero h1 {
+      position: relative;
+      font-family: 'Playfair Display', serif;
+      font-size: 3.2rem; font-weight: 700; color: #fff; margin-bottom: 12px;
+    }
+    .contact-hero-breadcrumb {
+      position: relative;
+      font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.7);
+    }
+    .contact-hero-breadcrumb a { color: rgba(255,255,255,0.7); text-decoration: none; }
+    .contact-hero-breadcrumb a:hover { color: #fff; }
+
+    /* FORM BODY */
+    .contact-body { padding: 72px 60px 80px; background: #f0f4f8; }
+    .contact-card {
+      max-width: 1060px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1.35fr;
+      border-radius: 6px; overflow: hidden;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.1);
+    }
+    .contact-info {
+      background: #7a9eb0; padding: 52px 44px;
+      color: #fff; display: flex; flex-direction: column; gap: 20px;
+    }
+    .contact-info h2 { font-family: 'Playfair Display', serif; font-size: 1.7rem; font-weight: 700; color: #fff; }
+    .contact-info h3 { font-size: 0.95rem; font-weight: 700; color: rgba(255,255,255,0.9); }
+    .contact-info hr { border: none; border-top: 1px solid rgba(255,255,255,0.4); }
+    .contact-info p { font-size: 0.92rem; line-height: 1.75; color: rgba(255,255,255,0.9); }
+
+    .contact-form-wrap { background: #e8edf3; padding: 52px 44px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+    .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+    .contact-form-wrap input,
+    .contact-form-wrap select,
+    .contact-form-wrap textarea {
+      width: 100%; padding: 14px 16px;
+      border: 1px solid #cdd5de; border-radius: 4px;
+      background: #fff; font-family: 'Raleway', sans-serif;
+      font-size: 0.88rem; color: var(--text-dark);
+      outline: none; transition: border-color 0.2s; appearance: none;
+    }
+    .contact-form-wrap input::placeholder,
+    .contact-form-wrap textarea::placeholder { color: #9aa5b4; }
+    .contact-form-wrap input:focus,
+    .contact-form-wrap select:focus,
+    .contact-form-wrap textarea:focus { border-color: var(--navy-mid); }
+    .contact-form-wrap select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239aa5b4' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 14px center;
+      padding-right: 36px; cursor: pointer; color: #9aa5b4;
+    }
+    .contact-form-wrap textarea { height: 148px; resize: vertical; margin-bottom: 12px; }
+    .btn-submit {
+      width: 100%; padding: 16px;
+      background: #fff; border: 1px solid #cdd5de; border-radius: 4px;
+      font-family: 'Raleway', sans-serif; font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dark);
+      cursor: pointer; transition: all 0.25s;
+    }
+    .btn-submit:hover { background: var(--navy-mid); color: #fff; border-color: var(--navy-mid); }
+
+    /* FOOTER */
+    footer { background: var(--navy-dark); color: rgba(255,255,255,0.85); padding: 60px 60px 0; }
+    .footer-grid { display: grid; grid-template-columns: 220px 1fr 1fr 1fr; gap: 48px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.15); }
+    .footer-brand { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+    .footer-brand svg { width: 42px; height: 52px; }
+    .footer-brand-name { font-size: 1rem; font-weight: 700; color: #fff; }
+    .footer-brand-name span { font-weight: 300; }
+    .footer-desc { font-size: 0.85rem; line-height: 1.7; color: rgba(255,255,255,0.75); }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col a { text-decoration: none; font-size: 0.82rem; color: rgba(255,255,255,0.7); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
+    .footer-col a:hover { color: #fff; }
+    .footer-contact-col p { font-size: 0.82rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #fff; margin-bottom: 8px; }
+    .footer-contact-col a { font-size: 0.82rem; color: rgba(255,255,255,0.75); text-decoration: none; letter-spacing: 0.05em; text-transform: uppercase; }
+    .footer-socials { display: flex; gap: 10px; margin-top: 20px; }
+    .social-icon { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; text-decoration: none; color: #fff; transition: opacity 0.2s; }
+    .social-icon:hover { opacity: 0.8; }
+    .social-ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+    .social-fb { background: #1877f2; }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; font-size: 0.78rem; color: rgba(255,255,255,0.5); }
+
+    @media (max-width: 900px) {
+      nav { padding: 16px 24px; }
+      .nav-links { gap: 20px; }
+      .contact-hero { padding: 48px 24px 40px; }
+      .contact-card { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .form-row-2 { grid-template-columns: 1fr; }
+      .contact-body { padding: 40px 20px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      footer { padding: 40px 24px 0; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg viewBox="0 0 80 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M40 5 C25 5, 10 22, 10 42 C10 62, 25 80, 40 92 C55 80, 70 62, 70 42 C70 22, 55 5, 40 5Z" fill="#1e3a8a"/>
+      <path d="M40 18 C30 18, 22 28, 22 42 C22 56, 30 68, 40 76 C50 68, 58 56, 58 42 C58 28, 50 18, 40 18Z" fill="#2a4faa"/>
+      <ellipse cx="40" cy="10" rx="8" ry="5" fill="#1e3a8a"/>
+      <rect x="36" y="2" width="8" height="8" rx="2" fill="#1a3070"/>
+      <path d="M30 42 Q40 32, 50 42 Q40 52, 30 42Z" fill="rgba(255,255,255,0.25)"/>
+    </svg>
+    <span class="nav-logo-text">ARABESQUE LASER ART, <span>LLC.</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Our Story</a></li>
+    <li><a href="index.html">History of Laser Art</a></li>
+    <li><a href="index.html">Our Products</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- BLUE HEADER -->
+<div class="contact-hero">
+  <svg class="contact-hero-deco left" viewBox="0 0 260 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g fill="white">
+      <polygon points="80,20 90,60 130,50 100,80 120,115 80,95 40,115 60,80 30,50 70,60"/>
+      <polygon points="200,150 210,190 250,180 220,210 240,245 200,225 160,245 180,210 150,180 190,190"/>
+      <polygon points="60,200 70,230 100,222 78,245 93,272 60,258 27,272 42,245 20,222 50,230"/>
+    </g>
+  </svg>
+  <svg class="contact-hero-deco right" viewBox="0 0 260 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g fill="white">
+      <polygon points="80,20 90,60 130,50 100,80 120,115 80,95 40,115 60,80 30,50 70,60"/>
+      <polygon points="200,150 210,190 250,180 220,210 240,245 200,225 160,245 180,210 150,180 190,190"/>
+      <polygon points="60,200 70,230 100,222 78,245 93,272 60,258 27,272 42,245 20,222 50,230"/>
+    </g>
+  </svg>
+  <h1>Contact</h1>
+  <div class="contact-hero-breadcrumb">
+    <a href="index.html">Home</a> &nbsp;/&nbsp; Contact
+  </div>
+</div>
+
+<!-- FORM -->
+<div class="contact-body">
+  <div class="contact-card">
+    <div class="contact-info">
+      <h2>Request a Custom Art Piece</h2>
+      <h3>Or get in touch with any questions!</h3>
+      <hr/>
+      <p>This team of experts brings years of experience and wants to help you redesign your space's interior to create better harmony between you and your surroundings. We aim to help you create an enjoyable, comfortable, and personalized environment.</p>
+    </div>
+    <div class="contact-form-wrap">
+      <div class="form-row">
+        <input type="text" placeholder="Name"/>
+        <input type="email" placeholder="Email"/>
+        <input type="tel" placeholder="Phone number"/>
+      </div>
+      <div class="form-row-2">
+        <select>
+          <option value="" disabled selected>Preferred Material</option>
+          <option>Wood</option>
+          <option>Metal</option>
+          <option>Acrylic</option>
+          <option>Other</option>
+        </select>
+        <select>
+          <option value="" disabled selected>Application</option>
+          <option>Interior Panels</option>
+          <option>Exterior Panels</option>
+          <option>Doors &amp; Windows</option>
+          <option>Furniture</option>
+          <option>Calligraphy</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <textarea placeholder="Project description"></textarea>
+      <button class="btn-submit">Submit Request</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <svg viewBox="0 0 80 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M40 5 C25 5, 10 22, 10 42 C10 62, 25 80, 40 92 C55 80, 70 62, 70 42 C70 22, 55 5, 40 5Z" fill="rgba(255,255,255,0.85)"/>
+        <path d="M40 18 C30 18, 22 28, 22 42 C22 56, 30 68, 40 76 C50 68, 58 56, 58 42 C58 28, 50 18, 40 18Z" fill="rgba(255,255,255,0.5)"/>
+      </svg>
+      <div class="footer-brand-name">Arabesque Laser Art, <span>llc.</span></div>
+      <p class="footer-desc">Arabesque Laser Art is a family-owned laser art design studio serving Columbus and the Central Ohio area. Contact us for a custom laser art piece today!</p>
+    </div>
+    <div class="footer-col">
+      <ul>
+        <li><a href="index.html">Our Story</a></li>
+        <li><a href="index.html#products">Shop Products</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Blog</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <ul>
+        <li><a href="#">Account</a></li>
+        <li><a href="#">Shipping</a></li>
+        <li><a href="#">Returns</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+    <div class="footer-contact-col">
+      <p>Contact Us</p>
+      <a href="mailto:INFO@ARABESQUEART.COM">INFO@ARABESQUEART.COM</a>
+      <div class="footer-socials">
+        <a class="social-icon social-ig" href="#" aria-label="Instagram">&#x1F4F7;</a>
+        <a class="social-icon social-fb" href="#" aria-label="Facebook">f</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>2023 © Arabesque Art, LLC</span>
+    <span>Site by The Media Captain</span>
+  </div>
+</footer>
+
+</body>
+</html>

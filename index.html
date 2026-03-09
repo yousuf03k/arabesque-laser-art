@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Arabesque Laser Art, LLC.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy-dark: #162d55;
+      --navy-mid: #2a4a8a;
+      --blue-btn: #2e4fa3;
+      --text-dark: #1a1a2e;
+      --text-mid: #444;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Raleway', sans-serif; color: var(--text-dark); background: #fff; overflow-x: hidden; }
+
+    /* NAV */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 60px; background: #fff; border-bottom: 1px solid #eee;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+    .nav-logo svg { width: 52px; height: 64px; }
+    .nav-logo-text { font-size: 1.1rem; font-weight: 700; color: var(--text-dark); letter-spacing: 0.04em; text-transform: uppercase; }
+    .nav-logo-text span { font-weight: 300; }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a { text-decoration: none; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dark); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--navy-mid); }
+
+    /* HERO */
+    .hero { position: relative; width: 100%; height: 580px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    .hero-bg { position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1600&q=80') center/cover no-repeat; filter: brightness(0.55); }
+    .hero-overlay { position: absolute; inset: 0; background: rgba(10,20,50,0.3); }
+    .hero-box { position: relative; z-index: 2; border: 2px solid rgba(255,255,255,0.7); padding: 52px 64px; text-align: center; max-width: 720px; animation: fadeUp 0.9s ease both; }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+    .hero-box h1 { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 700; color: #fff; line-height: 1.15; margin-bottom: 16px; }
+    .hero-box p { font-size: 1rem; color: rgba(255,255,255,0.88); margin-bottom: 32px; }
+
+    /* BUTTONS */
+    .btn { display: inline-block; padding: 14px 36px; border-radius: 50px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; transition: all 0.25s; cursor: pointer; border: none; }
+    .btn-primary { background: var(--blue-btn); color: #fff; }
+    .btn-primary:hover { background: var(--navy-mid); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(30,58,110,0.35); }
+    .btn-outline { background: var(--navy-dark); color: #fff; border: 2px solid var(--navy-dark); }
+    .btn-outline:hover { background: var(--navy-mid); transform: translateY(-2px); }
+
+    /* PRODUCTS */
+    .products { padding: 72px 60px; background: #fff; }
+    .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 1280px; margin: 0 auto; }
+    .product-grid .row2 { grid-column: 1/-1; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    .product-card { position: relative; overflow: hidden; border-radius: 4px; cursor: pointer; }
+    .product-card img { width: 100%; height: 320px; object-fit: cover; display: block; transition: transform 0.45s ease; filter: brightness(0.72); }
+    .row2 .product-card img { height: 300px; }
+    .product-card:hover img { transform: scale(1.05); filter: brightness(0.55); }
+    .product-label { position: absolute; bottom: 22px; left: 24px; font-size: 1.45rem; font-weight: 700; color: #fff; line-height: 1.2; text-shadow: 0 2px 8px rgba(0,0,0,0.4); }
+
+    /* CTA BAND */
+    .cta-band { padding: 56px 60px; display: flex; align-items: center; justify-content: space-between; max-width: 1100px; margin: 0 auto; }
+    .cta-band h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; color: var(--navy-dark); }
+
+    /* BLUE BANNER */
+    .blue-banner { position: relative; width: 100%; min-height: 300px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .blue-banner-bg { position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=1600&q=80') center/cover no-repeat; filter: brightness(0.35) saturate(0.6); }
+    .blue-banner-overlay { position: absolute; inset: 0; background: rgba(30,58,110,0.72); }
+    .blue-banner::before, .blue-banner::after { content: ''; position: absolute; left: 8%; right: 8%; height: 14px; background: var(--navy-mid); z-index: 3; border-radius: 2px; }
+    .blue-banner::before { top: 0; } .blue-banner::after { bottom: 0; }
+    .blue-banner-content { position: relative; z-index: 4; text-align: center; padding: 52px 24px; }
+    .blue-banner-content h2 { font-family: 'Playfair Display', serif; font-size: 2.1rem; color: #fff; font-weight: 700; margin-bottom: 28px; }
+
+    /* ABOUT */
+    .about { padding: 80px 60px; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+    .about-img { width: 100%; height: 520px; object-fit: cover; border-radius: 4px; }
+    .about-text h2 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--navy-dark); margin-bottom: 24px; }
+    .about-text p { font-size: 0.97rem; line-height: 1.8; color: var(--text-mid); margin-bottom: 12px; }
+    .about-text .btn { margin-top: 24px; }
+
+    /* FOOTER */
+    footer { background: var(--navy-dark); color: rgba(255,255,255,0.85); padding: 60px 60px 0; }
+    .footer-grid { display: grid; grid-template-columns: 220px 1fr 1fr 1fr; gap: 48px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.15); }
+    .footer-brand { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+    .footer-brand svg { width: 42px; height: 52px; }
+    .footer-brand-name { font-size: 1rem; font-weight: 700; color: #fff; }
+    .footer-brand-name span { font-weight: 300; }
+    .footer-desc { font-size: 0.85rem; line-height: 1.7; color: rgba(255,255,255,0.75); }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col a { text-decoration: none; font-size: 0.82rem; color: rgba(255,255,255,0.7); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
+    .footer-col a:hover { color: #fff; }
+    .footer-contact-col p { font-size: 0.82rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #fff; margin-bottom: 8px; }
+    .footer-contact-col a { font-size: 0.82rem; color: rgba(255,255,255,0.75); text-decoration: none; letter-spacing: 0.05em; text-transform: uppercase; }
+    .footer-socials { display: flex; gap: 10px; margin-top: 20px; }
+    .social-icon { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; text-decoration: none; color: #fff; transition: opacity 0.2s; }
+    .social-icon:hover { opacity: 0.8; }
+    .social-ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+    .social-fb { background: #1877f2; }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; font-size: 0.78rem; color: rgba(255,255,255,0.5); }
+
+    @media (max-width: 900px) {
+      nav { padding: 16px 24px; }
+      .nav-links { gap: 20px; }
+      .hero-box { padding: 36px 28px; }
+      .hero-box h1 { font-size: 2rem; }
+      .products { padding: 48px 24px; }
+      .product-grid { grid-template-columns: 1fr; }
+      .product-grid .row2 { grid-template-columns: 1fr; }
+      .about { grid-template-columns: 1fr; padding: 48px 24px; }
+      .cta-band { flex-direction: column; gap: 24px; text-align: center; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      footer { padding: 40px 24px 0; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg viewBox="0 0 80 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M40 5 C25 5, 10 22, 10 42 C10 62, 25 80, 40 92 C55 80, 70 62, 70 42 C70 22, 55 5, 40 5Z" fill="#1e3a8a"/>
+      <path d="M40 18 C30 18, 22 28, 22 42 C22 56, 30 68, 40 76 C50 68, 58 56, 58 42 C58 28, 50 18, 40 18Z" fill="#2a4faa"/>
+      <ellipse cx="40" cy="10" rx="8" ry="5" fill="#1e3a8a"/>
+      <rect x="36" y="2" width="8" height="8" rx="2" fill="#1a3070"/>
+      <path d="M30 42 Q40 32, 50 42 Q40 52, 30 42Z" fill="rgba(255,255,255,0.25)"/>
+    </svg>
+    <span class="nav-logo-text">ARABESQUE LASER ART, <span>LLC.</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#story">Our Story</a></li>
+    <li><a href="#history">History of Laser Art</a></li>
+    <li><a href="#products">Our Products</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-box">
+    <h1>Columbus' Top Custom Laser Art</h1>
+    <p>Ready to add a custom touch to your home? We are here to help.</p>
+    <a href="contact.html" class="btn btn-primary">Contact Us</a>
+  </div>
+</section>
+
+<section class="products" id="products">
+  <div class="product-grid">
+    <div class="product-card">
+      <img src="https://images.unsplash.com/photo-1615811361523-8c00e31a0c3f?w=800&q=80" alt="Interior Panels"/>
+      <div class="product-label">Interior<br>Panels</div>
+    </div>
+    <div class="product-card">
+      <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80" alt="Exterior Panels"/>
+      <div class="product-label">Exterior Panels</div>
+    </div>
+    <div class="row2">
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="Doors & Windows"/>
+        <div class="product-label">Doors &<br>Windows</div>
+      </div>
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&q=80" alt="Furniture"/>
+        <div class="product-label">Furniture</div>
+      </div>
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=800&q=80" alt="Calligraphy"/>
+        <div class="product-label">Calligraphy</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="border-top:1px solid #eee; border-bottom:1px solid #eee;">
+  <div class="cta-band">
+    <h2>Request a Custom Art Piece</h2>
+    <a href="contact.html" class="btn btn-outline">Contact Us</a>
+  </div>
+</section>
+
+<section class="blue-banner">
+  <div class="blue-banner-bg"></div>
+  <div class="blue-banner-overlay"></div>
+  <div class="blue-banner-content">
+    <h2>Bring Your Vision To Life With Custom Laser Art</h2>
+    <a href="#history" class="btn btn-outline">The History of Laser Art</a>
+  </div>
+</section>
+
+<section class="about" id="story">
+  <img class="about-img" src="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=900&q=80" alt="Arabesque laser art detail"/>
+  <div class="about-text">
+    <h2>About Arabesque Art</h2>
+    <p>Arabesque Laser Art (ALA) focuses on bringing practical and aesthetic solutions to the living, working, and worship spaces of all its customers. The use of CNC and Laser technology makes any design possible.</p>
+    <p>Patterns and carvings can add to any furniture, art, or decor. While often made of wood and metal, any type of material can be used. Here at Arabesque Art, we will work with you to bring your vision to life.</p>
+    <a href="#story" class="btn btn-outline">Learn More</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <svg viewBox="0 0 80 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M40 5 C25 5, 10 22, 10 42 C10 62, 25 80, 40 92 C55 80, 70 62, 70 42 C70 22, 55 5, 40 5Z" fill="rgba(255,255,255,0.85)"/>
+        <path d="M40 18 C30 18, 22 28, 22 42 C22 56, 30 68, 40 76 C50 68, 58 56, 58 42 C58 28, 50 18, 40 18Z" fill="rgba(255,255,255,0.5)"/>
+      </svg>
+      <div class="footer-brand-name">Arabesque Laser Art, <span>llc.</span></div>
+      <p class="footer-desc">Arabesque Laser Art is a family-owned laser art design studio serving Columbus and the Central Ohio area. Contact us for a custom laser art piece today!</p>
+    </div>
+    <div class="footer-col">
+      <ul>
+        <li><a href="#story">Our Story</a></li>
+        <li><a href="#products">Shop Products</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Blog</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <ul>
+        <li><a href="#">Account</a></li>
+        <li><a href="#">Shipping</a></li>
+        <li><a href="#">Returns</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+    <div class="footer-contact-col">
+      <p>Contact Us</p>
+      <a href="mailto:INFO@ARABESQUEART.COM">INFO@ARABESQUEART.COM</a>
+      <div class="footer-socials">
+        <a class="social-icon social-ig" href="#" aria-label="Instagram">&#x1F4F7;</a>
+        <a class="social-icon social-fb" href="#" aria-label="Facebook">f</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>2023 © Arabesque Art, LLC</span>
+    <span>Site by The Media Captain</span>
+  </div>
+</footer>
+
+</body>
+</html>
