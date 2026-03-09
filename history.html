@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Contact — Arabesque Laser Art, LLC.</title>
+  <title>History of Laser Art — Arabesque Laser Art, LLC.</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600;700&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -11,7 +11,7 @@
       --navy-dark: #162d55;
       --navy-mid: #2a4a8a;
       --text-dark: #1a1a2e;
-      --text-mid: #444;
+      --text-mid: #555;
     }
     body { font-family: 'Raleway', sans-serif; color: var(--text-dark); background: #fff; overflow-x: hidden; }
 
@@ -29,15 +29,15 @@
     .nav-links a { text-decoration: none; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dark); transition: color 0.2s; }
     .nav-links a:hover, .nav-links a.active { color: var(--navy-mid); }
 
-    /* CONTACT HERO BANNER */
-    .contact-hero {
+    /* PAGE HERO BANNER */
+    .page-hero {
       background: var(--navy-mid);
       position: relative;
       overflow: hidden;
       padding: 64px 60px 56px;
       text-align: center;
     }
-    .contact-hero::before {
+    .page-hero::before {
       content: '';
       position: absolute; inset: 0;
       background-image:
@@ -45,72 +45,64 @@
         repeating-linear-gradient(90deg, transparent, transparent 38px, rgba(255,255,255,0.07) 38px, rgba(255,255,255,0.07) 40px);
       pointer-events: none;
     }
-    .contact-hero-deco {
+    .page-hero-deco {
       position: absolute; top: 0; bottom: 0; width: 260px;
       opacity: 0.18; pointer-events: none;
     }
-    .contact-hero-deco.left  { left: -40px; }
-    .contact-hero-deco.right { right: -40px; transform: scaleX(-1); }
-    .contact-hero h1 {
+    .page-hero-deco.left  { left: -40px; }
+    .page-hero-deco.right { right: -40px; transform: scaleX(-1); }
+    .page-hero h1 {
       position: relative;
       font-family: 'Playfair Display', serif;
       font-size: 3.2rem; font-weight: 700; color: #fff; margin-bottom: 12px;
     }
-    .contact-hero-breadcrumb {
+    .page-hero-breadcrumb {
       position: relative;
       font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.7);
     }
-    .contact-hero-breadcrumb a { color: rgba(255,255,255,0.7); text-decoration: none; }
-    .contact-hero-breadcrumb a:hover { color: #fff; }
+    .page-hero-breadcrumb a { color: rgba(255,255,255,0.7); text-decoration: none; }
+    .page-hero-breadcrumb a:hover { color: #fff; }
 
-    /* FORM BODY */
-    .contact-body { padding: 72px 60px 80px; background: #f0f4f8; }
-    .contact-card {
-      max-width: 1060px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1.35fr;
-      border-radius: 6px; overflow: hidden;
-      box-shadow: 0 4px 32px rgba(0,0,0,0.1);
+    /* CONTENT SECTIONS */
+    /* Section 1: white bg, text left, image right */
+    .history-section {
+      padding: 80px 60px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
     }
-    .contact-info {
-      background: #7a9eb0; padding: 52px 44px;
-      color: #fff; display: flex; flex-direction: column; gap: 20px;
-    }
-    .contact-info h2 { font-family: 'Playfair Display', serif; font-size: 1.7rem; font-weight: 700; color: #fff; }
-    .contact-info h3 { font-size: 0.95rem; font-weight: 700; color: rgba(255,255,255,0.9); }
-    .contact-info hr { border: none; border-top: 1px solid rgba(255,255,255,0.4); }
-    .contact-info p { font-size: 0.92rem; line-height: 1.75; color: rgba(255,255,255,0.9); }
 
-    .contact-form-wrap { background: #e8edf3; padding: 52px 44px; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 12px; }
-    .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
-    .contact-form-wrap input,
-    .contact-form-wrap select,
-    .contact-form-wrap textarea {
-      width: 100%; padding: 14px 16px;
-      border: 1px solid #cdd5de; border-radius: 4px;
-      background: #fff; font-family: 'Raleway', sans-serif;
-      font-size: 0.88rem; color: var(--text-dark);
-      outline: none; transition: border-color 0.2s; appearance: none;
+    .history-section.reverse {
+      direction: rtl; /* flip columns */
     }
-    .contact-form-wrap input::placeholder,
-    .contact-form-wrap textarea::placeholder { color: #9aa5b4; }
-    .contact-form-wrap input:focus,
-    .contact-form-wrap select:focus,
-    .contact-form-wrap textarea:focus { border-color: var(--navy-mid); }
-    .contact-form-wrap select {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239aa5b4' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat; background-position: right 14px center;
-      padding-right: 36px; cursor: pointer; color: #9aa5b4;
+    .history-section.reverse > * {
+      direction: ltr;
     }
-    .contact-form-wrap textarea { height: 148px; resize: vertical; margin-bottom: 12px; }
-    .btn-submit {
-      width: 100%; padding: 16px;
-      background: #fff; border: 1px solid #cdd5de; border-radius: 4px;
-      font-family: 'Raleway', sans-serif; font-size: 0.78rem; font-weight: 700;
-      letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dark);
-      cursor: pointer; transition: all 0.25s;
+
+    /* Section 2: light blue-gray bg, image left, text right */
+    .history-section-wrap-2 {
+      background: #ccd9dc;
+      padding: 20px 0;
     }
-    .btn-submit:hover { background: var(--navy-mid); color: #fff; border-color: var(--navy-mid); }
+
+    .history-text p {
+      font-size: 0.97rem;
+      line-height: 1.85;
+      color: var(--text-mid);
+      margin-bottom: 20px;
+    }
+    .history-text p:last-child { margin-bottom: 0; }
+
+    .history-img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      border-radius: 3px;
+      display: block;
+    }
 
     /* FOOTER */
     footer { background: var(--navy-dark); color: rgba(255,255,255,0.85); padding: 60px 60px 0; }
@@ -135,11 +127,11 @@
     @media (max-width: 900px) {
       nav { padding: 16px 24px; }
       .nav-links { gap: 20px; }
-      .contact-hero { padding: 48px 24px 40px; }
-      .contact-card { grid-template-columns: 1fr; }
-      .form-row { grid-template-columns: 1fr; }
-      .form-row-2 { grid-template-columns: 1fr; }
-      .contact-body { padding: 40px 20px; }
+      .page-hero { padding: 48px 24px 40px; }
+      .page-hero h1 { font-size: 2.2rem; }
+      .history-section { grid-template-columns: 1fr; padding: 48px 24px; gap: 32px; }
+      .history-section.reverse { direction: ltr; }
+      .history-img { height: 280px; }
       .footer-grid { grid-template-columns: 1fr 1fr; }
       footer { padding: 40px 24px 0; }
     }
@@ -147,6 +139,7 @@
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
   <a href="index.html" class="nav-logo">
     <svg viewBox="0 0 80 100" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -160,73 +153,70 @@
   </a>
   <ul class="nav-links">
     <li><a href="index.html">Our Story</a></li>
-    <li><a href="history.html">History of Laser Art</a></li>
-    <li><a href="products.html">Our Products</a></li>
-    <li><a href="contact.html" class="active">Contact</a></li>
+    <li><a href="history.html" class="active">History of Laser Art</a></li>
+    <li><a href="index.html#products">Our Products</a></li>
+    <li><a href="contact.html">Contact</a></li>
   </ul>
 </nav>
 
-<!-- BLUE HEADER -->
-<div class="contact-hero">
-  <svg class="contact-hero-deco left" viewBox="0 0 260 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+<!-- BLUE HEADER BANNER -->
+<div class="page-hero">
+  <svg class="page-hero-deco left" viewBox="0 0 260 300" fill="none" xmlns="http://www.w3.org/2000/svg">
     <g fill="white">
       <polygon points="80,20 90,60 130,50 100,80 120,115 80,95 40,115 60,80 30,50 70,60"/>
       <polygon points="200,150 210,190 250,180 220,210 240,245 200,225 160,245 180,210 150,180 190,190"/>
       <polygon points="60,200 70,230 100,222 78,245 93,272 60,258 27,272 42,245 20,222 50,230"/>
     </g>
   </svg>
-  <svg class="contact-hero-deco right" viewBox="0 0 260 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg class="page-hero-deco right" viewBox="0 0 260 300" fill="none" xmlns="http://www.w3.org/2000/svg">
     <g fill="white">
       <polygon points="80,20 90,60 130,50 100,80 120,115 80,95 40,115 60,80 30,50 70,60"/>
       <polygon points="200,150 210,190 250,180 220,210 240,245 200,225 160,245 180,210 150,180 190,190"/>
       <polygon points="60,200 70,230 100,222 78,245 93,272 60,258 27,272 42,245 20,222 50,230"/>
     </g>
   </svg>
-  <h1>Contact</h1>
-  <div class="contact-hero-breadcrumb">
-    <a href="index.html">Home</a> &nbsp;/&nbsp; Contact
+  <h1>History of Laser Art</h1>
+  <div class="page-hero-breadcrumb">
+    <a href="index.html">Home</a> &nbsp;/&nbsp; History of Laser Art
   </div>
 </div>
 
-<!-- FORM -->
-<div class="contact-body">
-  <div class="contact-card">
-    <div class="contact-info">
-      <h2>Request a Custom Art Piece</h2>
-      <h3>Or get in touch with any questions!</h3>
-      <hr/>
-      <p>This team of experts brings years of experience and wants to help you redesign your space's interior to create better harmony between you and your surroundings. We aim to help you create an enjoyable, comfortable, and personalized environment.</p>
+<!-- SECTION 1: white bg — text left, image right -->
+<section>
+  <div class="history-section">
+    <div class="history-text">
+      <p>Laser technology was invented in 1960 by Theodore Maiman, but it would take until 1965 for the Western Electric Company to put into use the first CO2 production laser. This laser would be used to drill holes in diamond dies. 1965 also saw the first experiments with gas assisted laser technology.</p>
+      <p>The breakthrough of gas assisted laser technology changed the world by the late 1960's. In 1969, the Boeing Company concluded that laser technology could cut through hard materials. By the mid 1970's, these machines were being produced at a rapid rate.</p>
+      <p>Simultaneously experiments with Fibre laser technology were also taking place. It would take 20 more years before the first commercial devices using this technology would appear in the market. These machines weren't made widely available until the 2000's, but would form the basis of what we now know as 3D printing. Keep in mind that while Fibre machines are more expensive than CO2 machines, they are more precise.</p>
     </div>
-    <div class="contact-form-wrap">
-      <div class="form-row">
-        <input type="text" placeholder="Name"/>
-        <input type="email" placeholder="Email"/>
-        <input type="tel" placeholder="Phone number"/>
-      </div>
-      <div class="form-row-2">
-        <select>
-          <option value="" disabled selected>Preferred Material</option>
-          <option>Wood</option>
-          <option>Metal</option>
-          <option>Acrylic</option>
-          <option>Other</option>
-        </select>
-        <select>
-          <option value="" disabled selected>Application</option>
-          <option>Interior Panels</option>
-          <option>Exterior Panels</option>
-          <option>Doors &amp; Windows</option>
-          <option>Furniture</option>
-          <option>Calligraphy</option>
-          <option>Other</option>
-        </select>
-      </div>
-      <textarea placeholder="Project description"></textarea>
-      <button class="btn-submit">Submit Request</button>
+    <div>
+      <img
+        class="history-img"
+        src="https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=900&q=80"
+        alt="Laser cutting machine at work"
+      />
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: light blue-gray bg — image left, text right -->
+<div class="history-section-wrap-2">
+  <div class="history-section reverse">
+    <div class="history-text">
+      <p>We can't trace the exact start of these machines being used for art and architecture. Lasers itself were introduced as an art form (light shows) in the 70's, but the accessibility and technology took time to reach its full potential.</p>
+      <p>Once Laser technology became widely available to the public, artists, woodworkers, and metal workers started to experiment with all the decorative and practical uses of this technology. Laser art today is used in various settings; often as a way to pay homage to intricate art and architecture from other cultures.</p>
+    </div>
+    <div>
+      <img
+        class="history-img"
+        src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=900&q=80"
+        alt="CNC laser machine in workshop"
+      />
     </div>
   </div>
 </div>
 
+<!-- FOOTER -->
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
@@ -255,11 +245,18 @@
     </div>
     <div class="footer-contact-col">
       <p>Contact Us</p>
-      <a href="/cdn-cgi/l/email-protection#b3fafdf5fcf3f2e1f2f1f6e0e2e6f6f2e1e79df0fcfe"><span class="__cf_email__" data-cfemail="eaa3a4aca5aaabb8aba8afb9bbbfafabb8bec4a9a5a7">[email&#160;protected]</span></a>
+      <a href="mailto:INFO@ARABESQUEART.COM">INFO@ARABESQUEART.COM</a>
       <div class="footer-socials">
         <a class="social-icon social-ig" href="#" aria-label="Instagram">&#x1F4F7;</a>
         <a class="social-icon social-fb" href="#" aria-label="Facebook">f</a>
       </div>
     </div>
   </div>
-  <div class="
+  <div class="footer-bottom">
+    <span>2023 © Arabesque Art, LLC</span>
+    <span>Site by The Media Captain</span>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Products — Arabesque Laser Art, LLC.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy-dark: #162d55;
+      --navy-mid: #2a4a8a;
+      --blue-btn: #2e4fa3;
+      --text-dark: #1a1a2e;
+      --text-mid: #555;
+    }
+    body { font-family: 'Raleway', sans-serif; color: var(--text-dark); background: #fff; overflow-x: hidden; }
+
+    /* NAV */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 60px; background: #fff; border-bottom: 1px solid #eee;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+    .nav-logo svg { width: 52px; height: 64px; }
+    .nav-logo-text { font-size: 1.1rem; font-weight: 700; color: var(--text-dark); letter-spacing: 0.04em; text-transform: uppercase; }
+    .nav-logo-text span { font-weight: 300; }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a { text-decoration: none; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dark); transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--navy-mid); }
+
+    /* PAGE HERO BANNER */
+    .page-hero {
+      background: var(--navy-mid);
+      position: relative; overflow: hidden;
+      padding: 64px 60px 56px; text-align: center;
+    }
+    .page-hero::before {
+      content: ''; position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 38px, rgba(255,255,255,0.07) 38px, rgba(255,255,255,0.07) 40px),
+        repeating-linear-gradient(90deg, transparent, transparent 38px, rgba(255,255,255,0.07) 38px, rgba(255,255,255,0.07) 40px);
+      pointer-events: none;
+    }
+    .page-hero-deco { position: absolute; top: 0; bottom: 0; width: 260px; opacity: 0.18; pointer-events: none; }
+    .page-hero-deco.left  { left: -40px; }
+    .page-hero-deco.right { right: -40px; transform: scaleX(-1); }
+    .page-hero h1 { position: relative; font-family: 'Playfair Display', serif; font-size: 3.2rem; font-weight: 700; color: #fff; margin-bottom: 12px; }
+    .page-hero-breadcrumb { position: relative; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.7); }
+    .page-hero-breadcrumb a { color: rgba(255,255,255,0.7); text-decoration: none; }
+    .page-hero-breadcrumb a:hover { color: #fff; }
+
+    /* INTRO SECTION */
+    .intro {
+      padding: 72px 60px 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .intro-text h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem; font-weight: 700;
+      color: var(--text-dark); margin-bottom: 14px;
+    }
+    .intro-text p { font-size: 0.95rem; line-height: 1.8; color: var(--text-mid); margin-bottom: 28px; }
+    .btn {
+      display: inline-block; padding: 13px 30px; border-radius: 50px;
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; text-decoration: none;
+      transition: all 0.25s; cursor: pointer; border: none;
+    }
+    .btn-primary { background: var(--blue-btn); color: #fff; }
+    .btn-primary:hover { background: var(--navy-mid); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(30,58,110,0.3); }
+    .intro-img { width: 100%; height: 360px; object-fit: cover; border-radius: 3px; display: block; }
+
+    /* BROWSE SECTION */
+    .browse {
+      background: #f4f4f4;
+      padding: 60px 60px 80px;
+    }
+    .browse-header {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .browse-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.9rem; font-weight: 700;
+      color: var(--text-dark); margin-bottom: 10px;
+    }
+    .browse-header p { font-size: 0.92rem; color: var(--text-mid); margin-bottom: 20px; }
+    .browse-divider {
+      width: 200px; height: 2px;
+      background: var(--navy-mid);
+      margin: 0 auto;
+    }
+
+    /* TABS */
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      margin-bottom: 32px;
+      border-bottom: 1px solid #ddd;
+      max-width: 900px;
+      margin: 0 auto 32px;
+    }
+    .tab-btn {
+      padding: 14px 28px;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.85rem; font-weight: 600;
+      color: var(--text-mid);
+      background: none; border: none;
+      border-bottom: 3px solid transparent;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .tab-btn:hover { color: var(--text-dark); }
+    .tab-btn.active {
+      color: var(--text-dark);
+      border-bottom-color: var(--navy-mid);
+    }
+
+    /* GALLERY GRID */
+    .gallery-wrap { max-width: 900px; margin: 0 auto; }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+    .gallery-img {
+      width: 100%; aspect-ratio: 4/3;
+      object-fit: cover; display: block;
+      transition: transform 0.35s ease, filter 0.35s ease;
+      cursor: pointer;
+    }
+    .gallery-img:hover { transform: scale(1.03); filter: brightness(0.88); }
+
+    /* CONTACT FORM BAND */
+    .contact-band {
+      background: #7a9eb0;
+      padding: 60px;
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 60px;
+      align-items: start;
+    }
+    .contact-band-info h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem; font-weight: 700;
+      color: #fff; margin-bottom: 8px;
+    }
+    .contact-band-info h3 { font-size: 0.95rem; font-weight: 700; color: rgba(255,255,255,0.9); margin-bottom: 20px; }
+    .contact-band-info hr { border: none; border-top: 1px solid rgba(255,255,255,0.4); margin-bottom: 20px; }
+    .contact-band-info p { font-size: 0.92rem; line-height: 1.75; color: rgba(255,255,255,0.9); }
+
+    .contact-band-form { display: flex; flex-direction: column; gap: 12px; }
+    .form-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .contact-band-form input,
+    .contact-band-form select,
+    .contact-band-form textarea {
+      width: 100%; padding: 13px 15px;
+      border: 1px solid #cdd5de; border-radius: 4px;
+      background: #fff; font-family: 'Raleway', sans-serif;
+      font-size: 0.88rem; color: var(--text-dark);
+      outline: none; transition: border-color 0.2s; appearance: none;
+    }
+    .contact-band-form input::placeholder,
+    .contact-band-form textarea::placeholder { color: #9aa5b4; }
+    .contact-band-form input:focus,
+    .contact-band-form select:focus,
+    .contact-band-form textarea:focus { border-color: var(--navy-mid); }
+    .contact-band-form select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239aa5b4' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 14px center;
+      padding-right: 36px; cursor: pointer; color: #9aa5b4;
+    }
+    .contact-band-form textarea { height: 130px; resize: vertical; }
+    .btn-submit {
+      align-self: center;
+      padding: 14px 40px;
+      background: #fff; border: 1px solid #cdd5de; border-radius: 4px;
+      font-family: 'Raleway', sans-serif; font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dark);
+      cursor: pointer; transition: all 0.25s;
+    }
+    .btn-submit:hover { background: var(--navy-mid); color: #fff; border-color: var(--navy-mid); }
+
+    /* FOOTER */
+    footer { background: var(--navy-dark); color: rgba(255,255,255,0.85); padding: 60px 60px 0; }
+    .footer-grid { display: grid; grid-template-columns: 220px 1fr 1fr 1fr; gap: 48px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.15); }
+    .footer-brand { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+    .footer-brand svg { width: 42px; height: 52px; }
+    .footer-brand-name { font-size: 1rem; font-weight: 700; color: #fff; }
+    .footer-brand-name span { font-weight: 300; }
+    .footer-desc { font-size: 0.85rem; line-height: 1.7; color: rgba(255,255,255,0.75); }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col a { text-decoration: none; font-size: 0.82rem; color: rgba(255,255,255,0.7); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
+    .footer-col a:hover { color: #fff; }
+    .footer-contact-col p { font-size: 0.82rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #fff; margin-bottom: 8px; }
+    .footer-contact-col a { font-size: 0.82rem; color: rgba(255,255,255,0.75); text-decoration: none; letter-spacing: 0.05em; text-transform: uppercase; }
+    .footer-socials { display: flex; gap: 10px; margin-top: 20px; }
+    .social-icon { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; text-decoration: none; color: #fff; transition: opacity 0.2s; }
+    .social-icon:hover { opacity: 0.8; }
+    .social-ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+    .social-fb { background: #1877f2; }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; font-size: 0.78rem; color: rgba(255,255,255,0.5); }
+
+    @media (max-width: 900px) {
+      nav { padding: 16px 24px; }
+      .nav-links { gap: 20px; }
+      .page-hero { padding: 48px 24px 40px; }
+      .page-hero h1 { font-size: 2.2rem; }
+      .intro { grid-template-columns: 1fr; padding: 48px 24px; gap: 32px; }
+      .browse { padding: 48px 24px 60px; }
+      .tab-panel.active { grid-template-columns: 1fr 1fr; }
+      .tabs { flex-wrap: wrap; }
+      .contact-band { grid-template-columns: 1fr; padding: 40px 24px; }
+      .form-row-3 { grid-template-columns: 1fr; }
+      .form-row-2 { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      footer { padding: 40px 24px 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg viewBox="0 0 80 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M40 5 C25 5, 10 22, 10 42 C10 62, 25 80, 40 92 C55 80, 70 62, 70 42 C70 22, 55 5, 40 5Z" fill="#1e3a8a"/>
+      <path d="M40 18 C30 18, 22 28, 22 42 C22 56, 30 68, 40 76 C50 68, 58 56, 58 42 C58 28, 50 18, 40 18Z" fill="#2a4faa"/>
+      <ellipse cx="40" cy="10" rx="8" ry="5" fill="#1e3a8a"/>
+      <rect x="36" y="2" width="8" height="8" rx="2" fill="#1a3070"/>
+      <path d="M30 42 Q40 32, 50 42 Q40 52, 30 42Z" fill="rgba(255,255,255,0.25)"/>
+    </svg>
+    <span class="nav-logo-text">ARABESQUE LASER ART, <span>LLC.</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Our Story</a></li>
+    <li><a href="history.html">History of Laser Art</a></li>
+    <li><a href="products.html" class="active">Our Products</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- BLUE HEADER BANNER -->
+<div class="page-hero">
+  <svg class="page-hero-deco left" viewBox="0 0 260 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g fill="white">
+      <polygon points="80,20 90,60 130,50 100,80 120,115 80,95 40,115 60,80 30,50 70,60"/>
+      <polygon points="200,150 210,190 250,180 220,210 240,245 200,225 160,245 180,210 150,180 190,190"/>
+      <polygon points="60,200 70,230 100,222 78,245 93,272 60,258 27,272 42,245 20,222 50,230"/>
+    </g>
+  </svg>
+  <svg class="page-hero-deco right" viewBox="0 0 260 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g fill="white">
+      <polygon points="80,20 90,60 130,50 100,80 120,115 80,95 40,115 60,80 30,50 70,60"/>
+      <polygon points="200,150 210,190 250,180 220,210 240,245 200,225 160,245 180,210 150,180 190,190"/>
+      <polygon points="60,200 70,230 100,222 78,245 93,272 60,258 27,272 42,245 20,222 50,230"/>
+    </g>
+  </svg>
+  <h1>Our Products</h1>
+  <div class="page-hero-breadcrumb">
+    <a href="index.html">Home</a> &nbsp;/&nbsp; Our Products
+  </div>
+</div>
+
+<!-- INTRO: text left, image right -->
+<section>
+  <div class="intro">
+    <div class="intro-text">
+      <h2>Imagine It!..We Build It!</h2>
+      <p>ALA's CNC machine and Laser Cutting &amp; engraving machine can make the design of your choice on different types of material; Wood, Acrylic, Metal, and even Fabrics.</p>
+      <a href="contact.html" class="btn btn-primary">Contact Us</a>
+    </div>
+    <img
+      class="intro-img"
+      src="https://images.unsplash.com/photo-1563770660941-10a63607a1a5?w=900&q=80"
+      alt="Laser cutting machine sparking"
+    />
+  </div>
+</section>
+
+<!-- BROWSE FOR INSPIRATION -->
+<section class="browse">
+  <div class="browse-header">
+    <h2>Browse For Inspiration.</h2>
+    <p>We can bring your vision to life. Browse products below for inspiration for your own design.</p>
+    <div class="browse-divider"></div>
+  </div>
+
+  <!-- TABS -->
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="interior">Interior Panels</button>
+    <button class="tab-btn" data-tab="exterior">Exterior Panels</button>
+    <button class="tab-btn" data-tab="doors">Doors &amp; Windows</button>
+    <button class="tab-btn" data-tab="furniture">Furniture</button>
+    <button class="tab-btn" data-tab="calligraphy">Calligraphy</button>
+  </div>
+
+  <div class="gallery-wrap">
+    <!-- INTERIOR PANELS -->
+    <div class="tab-panel active" id="tab-interior">
+      <img class="gallery-img" src="https://images.unsplash.com/photo-1615811361523-8c00e31a0c3f?w=600&q=80" alt="Interior panel 1"/>
+      <img class="gallery-img" src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80" alt="Interior panel 2"/>
+      <img class="gallery-img" src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80" alt="Interior panel 3"/>
+      <img class="gallery-img" src="https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?w=600&q=80" alt="Interior panel 4"/>
+      <img class="gallery-img" src="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=600&q=80" alt="Interior panel 5"/>
+      <img class="gallery-img" src="https://images.unsplash.com/photo-1616046229478-9901c5536a45?w=600&q=80" alt="Interior panel 6"/>
+    </div>
+
+    <!-- EXTERIOR PANELS -->
+    <div class="tab-panel" id="tab-exterior">
+      <img class="gallery-img" src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=600&q=80" alt="Exterior panel 1"/>
+      <img class="gallery-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Exterior panel 2"/>
+      <img class="gallery-img" src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=600&q=80" alt="Exterior panel 3"/>
+      <img class="gallery-img" src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=600&q=80" alt="Exterior panel 4"/>
+      <img class="gallery-img" src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80" alt="Exterior panel 5"/>
+      <img class="gallery-img" src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=600&q=80" alt="Exterior panel 6"/>
+    </div>
+
+    <!-- DOORS & WINDOWS -->
+    <div class="tab-panel" id="tab-doors">
+      <img class="gallery-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Door 1"/>
+      <img class="gallery-img" src="https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=600&q=80" alt="Door 2"/>
+      <img class="gallery-img" src="https://images.unsplash.com/photo-1574362848149-11496d93a7c7?w=600&q=80" alt="Window 1"/>
+      <img class="gallery-img" src="https://images.unsplash.com/photo-1560185127-6ed189bf02f4?w=600&q=80" alt="Window 2"/>
+      <img class="gallery-img" src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=600&q=80" alt="Door 3"/>
+      <img class="gallery-img" src="https://images.unsplash.com/photo-1599809275671-b5942cabc7a2?w=600&q=80" alt="Window 3"/>
+    </div>
+
+    <!-- FURNITURE -->
+    <div class="tab-panel" id="tab-furniture">
+      <img class="gallery-img" src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80" alt="Furniture 1"/>
+      <img class="gallery-img" src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=600&q=80" alt="Furniture 2"/>
+      <img class="gallery-img" src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=600&q=80" alt="Furniture 3"/>
+      <img class="gallery-img" src="https://images.unsplash.com/photo-1538688525198-9b88f6f53126?w=600&q=80" alt="Furniture 4"/>
+      <img class="gallery-img" src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=600&q=80" alt="Furniture 5"/>
+      <img class="gallery-img" src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80" alt="Furniture 6"/>
+    </div>
+
+    <!-- CALLIGRAPHY -->
+    <div class="tab-panel" id="tab-calligraphy">
+      <img class="gallery-img" src="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=600&q=80" alt="Calligraphy 1"/>
+      <img class="gallery-img" src="https://images.unsplash.com/photo-1579541591970-288a02b7f90e?w=600&q=80" alt="Calligraphy 2"/>
+      <img class="gallery-img" src="https://images.unsplash.com/photo-1588392382834-a891154bca4d?w=600&q=80" alt="Calligraphy 3"/>
+      <img class="gallery-img" src="https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&q=80" alt="Calligraphy 4"/>
+      <img class="gallery-img" src="https://images.unsplash.com/photo-1484755560615-a4c64e778a6c?w=600&q=80" alt="Calligraphy 5"/>
+      <img class="gallery-img" src="https://images.unsplash.com/photo-1544967082-d9d25d867d66?w=600&q=80" alt="Calligraphy 6"/>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT FORM BAND -->
+<section class="contact-band">
+  <div class="contact-band-info">
+    <h2>Request a Custom Art Piece</h2>
+    <h3>Or get in touch with any questions!</h3>
+    <hr/>
+    <p>This team of experts brings years of experience and wants to help you redesign your space's interior to create better harmony between you and your surroundings. We aim to help you create an enjoyable, comfortable, and personalized environment.</p>
+  </div>
+  <div class="contact-band-form">
+    <div class="form-row-3">
+      <input type="text" placeholder="Name"/>
+      <input type="email" placeholder="Email"/>
+      <input type="tel" placeholder="Phone number"/>
+    </div>
+    <div class="form-row-2">
+      <select>
+        <option value="" disabled selected>Preferred Material</option>
+        <option>Wood</option>
+        <option>Metal</option>
+        <option>Acrylic</option>
+        <option>Other</option>
+      </select>
+      <select>
+        <option value="" disabled selected>Application</option>
+        <option>Interior Panels</option>
+        <option>Exterior Panels</option>
+        <option>Doors &amp; Windows</option>
+        <option>Furniture</option>
+        <option>Calligraphy</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <textarea placeholder="Project description"></textarea>
+    <button class="btn-submit">Submit Request</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <svg viewBox="0 0 80 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M40 5 C25 5, 10 22, 10 42 C10 62, 25 80, 40 92 C55 80, 70 62, 70 42 C70 22, 55 5, 40 5Z" fill="rgba(255,255,255,0.85)"/>
+        <path d="M40 18 C30 18, 22 28, 22 42 C22 56, 30 68, 40 76 C50 68, 58 56, 58 42 C58 28, 50 18, 40 18Z" fill="rgba(255,255,255,0.5)"/>
+      </svg>
+      <div class="footer-brand-name">Arabesque Laser Art, <span>llc.</span></div>
+      <p class="footer-desc">Arabesque Laser Art is a family-owned laser art design studio serving Columbus and the Central Ohio area. Contact us for a custom laser art piece today!</p>
+    </div>
+    <div class="footer-col">
+      <ul>
+        <li><a href="index.html">Our Story</a></li>
+        <li><a href="products.html">Shop Products</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Blog</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <ul>
+        <li><a href="#">Account</a></li>
+        <li><a href="#">Shipping</a></li>
+        <li><a href="#">Returns</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+    <div class="footer-contact-col">
+      <p>Contact Us</p>
+      <a href="mailto:INFO@ARABESQUEART.COM">INFO@ARABESQUEART.COM</a>
+      <div class="footer-socials">
+        <a class="social-icon social-ig" href="#" aria-label="Instagram">&#x1F4F7;</a>
+        <a class="social-icon social-fb" href="#" aria-label="Facebook">f</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>2023 © Arabesque Art, LLC</span>
+    <span>Site by The Media Captain</span>
+  </div>
+</footer>
+
+<script>
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const tabPanels = document.querySelectorAll('.tab-panel');
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabBtns.forEach(b => b.classList.remove('active'));
+      tabPanels.forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
