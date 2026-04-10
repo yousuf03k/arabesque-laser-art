@@ -198,31 +198,33 @@
       <p>This team of experts brings years of experience and wants to help you redesign your space's interior to create better harmony between you and your surroundings. We aim to help you create an enjoyable, comfortable, and personalized environment.</p>
     </div>
     <div class="contact-form-wrap">
-      <div class="form-row">
-        <input type="text" placeholder="Name"/>
-        <input type="email" placeholder="Email"/>
-        <input type="tel" placeholder="Phone number"/>
-      </div>
-      <div class="form-row-2">
-        <select>
-          <option value="" disabled selected>Preferred Material</option>
-          <option>Wood</option>
-          <option>Metal</option>
-          <option>Acrylic</option>
-          <option>Other</option>
-        </select>
-        <select>
-          <option value="" disabled selected>Application</option>
-          <option>Interior Panels</option>
-          <option>Exterior Panels</option>
-          <option>Doors &amp; Windows</option>
-          <option>Furniture</option>
-          <option>Calligraphy</option>
-          <option>Other</option>
-        </select>
-      </div>
-      <textarea placeholder="Project description"></textarea>
-      <button class="btn-submit">Submit Request</button>
+      <form action="https://formspree.io/f/mdapvdga" method="POST">
+        <div class="form-row">
+          <input type="text" name="name" placeholder="Name" required/>
+          <input type="email" name="email" placeholder="Email" required/>
+          <input type="tel" name="phone" placeholder="Phone number"/>
+        </div>
+        <div class="form-row-2">
+          <select name="preferred_material">
+            <option value="" disabled selected>Preferred Material</option>
+            <option>Wood</option>
+            <option>Metal</option>
+            <option>Acrylic</option>
+            <option>Other</option>
+          </select>
+          <select name="application">
+            <option value="" disabled selected>Application</option>
+            <option>Interior Panels</option>
+            <option>Exterior Panels</option>
+            <option>Doors &amp; Windows</option>
+            <option>Furniture</option>
+            <option>Calligraphy</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <textarea name="project_description" placeholder="Project description"></textarea>
+        <button type="submit" class="btn-submit">Submit Request</button>
+      </form>
     </div>
   </div>
 </div>
