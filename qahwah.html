@@ -63,7 +63,7 @@
     .btn-white:hover { background: #e8edf3; transform: translateY(-2px); }
 
     footer { background: var(--navy-dark); color: rgba(255,255,255,0.85); padding: 60px 60px 0; }
-    .footer-grid { display: grid; grid-template-columns: 220px 1fr 1fr 1fr; gap: 48px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.15); }
+    .footer-grid { display: grid; grid-template-columns: 200px 160px 160px 220px; gap: 32px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.15); max-width: 900px; margin: 0 auto; }
     .footer-brand { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
     .footer-brand-name { font-size: 1rem; font-weight: 700; color: #fff; }
     .footer-brand-name span { font-weight: 300; }
@@ -177,7 +177,7 @@
     </div>
     <div class="footer-contact-col">
       <p>Contact Us</p>
-      <a href="mailto:INFO@ARABESQUEART.COM">INFO@ARABESQUEART.COM</a>
+      <a href="/cdn-cgi/l/email-protection#cb82858d848b8a998a898e989a9e8e8a999fe5888486"><span class="__cf_email__" data-cfemail="440d0a020b040516050601171511010516106a070b09">[email&#160;protected]</span></a>
       <div class="footer-socials">
         <a class="social-icon social-ig" href="#" aria-label="Instagram">&#x1F4F7;</a>
         <a class="social-icon social-fb" href="#" aria-label="Facebook">f</a>
@@ -190,7 +190,7 @@
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   const images = [
     'images/Qahwah_house_2.jpg',
     'images/Qahwah_house_panels_and_calligraphy_with_led.jpg',
@@ -221,15 +221,4 @@
   function changeImage(dir, e) {
     if (e) e.stopPropagation();
     current = (current + dir + images.length) % images.length;
-    document.getElementById('lightbox-img').src = images[current];
-  }
-
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowRight') changeImage(1);
-    if (e.key === 'ArrowLeft') changeImage(-1);
-  });
-</script>
-
-</body>
-</html>
+    document.getElementById('lightbox-img').s
