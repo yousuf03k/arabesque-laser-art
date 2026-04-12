@@ -97,7 +97,7 @@
     }
     .commercial-header {
       text-align: center;
-      margin-bottom: 48px;
+      margin-bottom: 52px;
     }
     .commercial-header h2 {
       font-family: 'Playfair Display', serif;
@@ -108,49 +108,117 @@
       font-size: 0.97rem; color: var(--text-mid);
       max-width: 620px; margin: 0 auto; line-height: 1.7;
     }
-    .commercial-grid {
+    .commercial-showcase {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 6px;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
       max-width: 1280px;
-      margin: 0 auto 48px;
+      margin: 0 auto 52px;
     }
-    .commercial-grid .wide {
-      grid-column: span 2;
+    .commercial-showcase-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 4px;
     }
-    .commercial-img {
-      width: 100%; height: 340px;
+    .commercial-showcase-item img {
+      width: 100%; height: 480px;
       object-fit: cover; display: block;
-      transition: transform 0.4s ease, filter 0.4s ease;
-      cursor: pointer;
+      transition: transform 0.45s ease, filter 0.45s ease;
     }
-    .commercial-img:hover {
-      transform: scale(1.03);
-      filter: brightness(0.85);
+    .commercial-showcase-item:hover img {
+      transform: scale(1.04);
+      filter: brightness(0.7);
     }
-    .commercial-clients {
-      text-align: center;
-      margin-top: 40px;
+    .commercial-showcase-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 28px 28px 24px;
+      background: linear-gradient(to top, rgba(10,20,50,0.85), transparent);
+      color: #fff;
     }
-    .commercial-clients h3 {
+    .commercial-showcase-label h3 {
       font-family: 'Playfair Display', serif;
-      font-size: 1.3rem; color: var(--navy-dark);
-      margin-bottom: 24px;
+      font-size: 1.5rem; font-weight: 700;
+      margin-bottom: 4px;
     }
-    .client-logos {
+    .commercial-showcase-label p {
+      font-size: 0.82rem; opacity: 0.8;
+      letter-spacing: 0.05em; text-transform: uppercase;
+    }
+
+    /* PROJECT CARDS */
+    .commercial-projects {
+      text-align: center;
+      margin-top: 16px;
+    }
+    .commercial-projects h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem; color: var(--navy-dark);
+      margin-bottom: 32px;
+    }
+    .project-cards {
       display: flex;
       justify-content: center;
-      align-items: center;
-      gap: 60px;
+      gap: 24px;
       flex-wrap: wrap;
+      max-width: 1280px;
+      margin: 0 auto;
     }
-    .client-name {
-      font-size: 1.1rem; font-weight: 700;
+    .project-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 6px;
+      width: 420px;
+      height: 260px;
+      text-decoration: none;
+      display: block;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+    .project-card img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      transition: transform 0.45s ease, filter 0.45s ease;
+      filter: brightness(0.6);
+    }
+    .project-card:hover img {
+      transform: scale(1.06);
+      filter: brightness(0.4);
+    }
+    .project-card-content {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
+    }
+    .project-card-content h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem; font-weight: 700;
+      color: #fff; margin-bottom: 8px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    }
+    .project-card-content p {
+      font-size: 0.8rem; color: rgba(255,255,255,0.85);
       letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--text-mid);
-      padding: 14px 28px;
-      border: 2px solid #ddd;
-      border-radius: 4px;
+      margin-bottom: 16px;
+    }
+    .project-card-btn {
+      padding: 9px 24px;
+      border: 2px solid #fff;
+      border-radius: 50px;
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: all 0.25s;
+    }
+    .project-card:hover .project-card-btn {
+      background: #fff;
+      color: var(--navy-dark);
     }
 
     @media (max-width: 900px) {
@@ -233,28 +301,45 @@
     <h2>We Transform Business Spaces</h2>
     <p>From coffee shop counters to full interior installations, we bring custom laser art to commercial spaces across Columbus. Every piece is made in the USA and built to impress.</p>
   </div>
-  <div class="commercial-grid">
-    <div class="wide">
-      <img class="commercial-img" src="images/Matari_full_interior_1.jpg" alt="Matari Coffee Co. Full Interior"/>
+
+  <!-- Two hero showcase photos -->
+  <div class="commercial-showcase">
+    <div class="commercial-showcase-item">
+      <img src="images/Matari_full_interior_1.jpg" alt="Matari Coffee Interior"/>
+      <div class="commercial-showcase-label">
+        <h3>Matari Coffee Co.</h3>
+        <p>Columbus, Ohio</p>
+      </div>
     </div>
-    <div>
-      <img class="commercial-img" src="images/Matari_calligraphy_1.jpg" alt="Matari Calligraphy Wall"/>
-    </div>
-    <div>
-      <img class="commercial-img" src="images/Qahwah_house_panels_and_calligraphy_with_led.jpg" alt="Qahwah House LED Panels"/>
-    </div>
-    <div>
-      <img class="commercial-img" src="images/Matari_portal_1.jpg" alt="Matari Portal"/>
-    </div>
-    <div class="wide">
-      <img class="commercial-img" src="images/Qahwah_house_2.jpg" alt="Qahwah House Interior"/>
+    <div class="commercial-showcase-item">
+      <img src="images/Qahwah_house_2.jpg" alt="Qahwah House Interior"/>
+      <div class="commercial-showcase-label">
+        <h3>Qahwah House</h3>
+        <p>Columbus, Ohio</p>
+      </div>
     </div>
   </div>
-  <div class="commercial-clients">
-    <h3>Featured Projects</h3>
-    <div class="client-logos">
-      <div class="client-name">Matari Coffee Co. — Columbus, OH</div>
-      <div class="client-name">Qahwah House — Columbus, OH</div>
+
+  <!-- Clickable project cards -->
+  <div class="commercial-projects">
+    <h3>Featured Projects — View Full Gallery</h3>
+    <div class="project-cards">
+      <a href="matari.html" class="project-card">
+        <img src="images/Matari_full_interior_2.jpg" alt="Matari Coffee Co."/>
+        <div class="project-card-content">
+          <h4>Matari Coffee Co.</h4>
+          <p>Columbus, Ohio</p>
+          <div class="project-card-btn">View Gallery</div>
+        </div>
+      </a>
+      <a href="qahwah.html" class="project-card">
+        <img src="images/Qahwah_house_3.jpg" alt="Qahwah House"/>
+        <div class="project-card-content">
+          <h4>Qahwah House</h4>
+          <p>Columbus, Ohio</p>
+          <div class="project-card-btn">View Gallery</div>
+        </div>
+      </a>
     </div>
   </div>
 </section>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Qahwah House — Arabesque Laser Art</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy-dark: #162d55;
+      --navy-mid: #2a4a8a;
+      --text-dark: #1a1a2e;
+      --text-mid: #555;
+    }
+    body { font-family: 'Raleway', sans-serif; color: var(--text-dark); background: #fff; overflow-x: hidden; }
+
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 18px 60px; background: #fff; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 100; }
+    .nav-logo { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+    .nav-logo img { height: 64px; width: auto; }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a { text-decoration: none; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dark); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--navy-mid); }
+
+    .page-hero { background: var(--navy-mid); position: relative; overflow: hidden; padding: 64px 60px 56px; text-align: center; }
+    .page-hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 38px, rgba(255,255,255,0.07) 38px, rgba(255,255,255,0.07) 40px), repeating-linear-gradient(90deg, transparent, transparent 38px, rgba(255,255,255,0.07) 38px, rgba(255,255,255,0.07) 40px); pointer-events: none; }
+    .page-hero-deco { position: absolute; top: 0; bottom: 0; width: 260px; opacity: 0.18; pointer-events: none; }
+    .page-hero-deco.left { left: -40px; }
+    .page-hero-deco.right { right: -40px; transform: scaleX(-1); }
+    .page-hero h1 { position: relative; font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 700; color: #fff; margin-bottom: 12px; }
+    .page-hero p { position: relative; font-size: 0.95rem; color: rgba(255,255,255,0.8); margin-bottom: 10px; }
+    .page-hero-breadcrumb { position: relative; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.6); }
+    .page-hero-breadcrumb a { color: rgba(255,255,255,0.6); text-decoration: none; }
+    .page-hero-breadcrumb a:hover { color: #fff; }
+
+    .project-intro { max-width: 800px; margin: 64px auto; padding: 0 60px; text-align: center; }
+    .project-intro h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--navy-dark); margin-bottom: 16px; }
+    .project-intro p { font-size: 0.97rem; line-height: 1.8; color: var(--text-mid); }
+
+    .gallery { padding: 0 60px 80px; max-width: 1280px; margin: 0 auto; }
+    .gallery-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+    .gallery-grid .tall { grid-row: span 2; }
+    .gallery-grid .wide { grid-column: span 2; }
+    .gallery-item { overflow: hidden; border-radius: 3px; cursor: pointer; }
+    .gallery-item img { width: 100%; height: 300px; object-fit: cover; display: block; transition: transform 0.4s ease, filter 0.4s ease; }
+    .gallery-grid .tall img { height: 608px; }
+    .gallery-grid .wide img { height: 300px; }
+    .gallery-item:hover img { transform: scale(1.04); filter: brightness(0.8); }
+
+    .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 999; align-items: center; justify-content: center; }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 3px; }
+    .lightbox-close { position: absolute; top: 24px; right: 32px; font-size: 2rem; color: #fff; cursor: pointer; background: none; border: none; line-height: 1; }
+    .lightbox-prev, .lightbox-next { position: absolute; top: 50%; transform: translateY(-50%); font-size: 2rem; color: #fff; cursor: pointer; background: none; border: none; padding: 12px; }
+    .lightbox-prev { left: 16px; }
+    .lightbox-next { right: 16px; }
+
+    .project-cta { background: var(--navy-dark); padding: 56px 60px; text-align: center; }
+    .project-cta h2 { font-family: 'Playfair Display', serif; font-size: 2rem; color: #fff; margin-bottom: 12px; }
+    .project-cta p { font-size: 0.95rem; color: rgba(255,255,255,0.75); margin-bottom: 28px; }
+    .btn { display: inline-block; padding: 14px 36px; border-radius: 50px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; transition: all 0.25s; cursor: pointer; border: none; }
+    .btn-white { background: #fff; color: var(--navy-dark); }
+    .btn-white:hover { background: #e8edf3; transform: translateY(-2px); }
+
+    footer { background: var(--navy-dark); color: rgba(255,255,255,0.85); padding: 60px 60px 0; }
+    .footer-grid { display: grid; grid-template-columns: 220px 1fr 1fr 1fr; gap: 48px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.15); }
+    .footer-brand { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+    .footer-brand-name { font-size: 1rem; font-weight: 700; color: #fff; }
+    .footer-brand-name span { font-weight: 300; }
+    .footer-desc { font-size: 0.85rem; line-height: 1.7; color: rgba(255,255,255,0.75); }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col a { text-decoration: none; font-size: 0.82rem; color: rgba(255,255,255,0.7); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
+    .footer-col a:hover { color: #fff; }
+    .footer-contact-col p { font-size: 0.82rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #fff; margin-bottom: 8px; }
+    .footer-contact-col a { font-size: 0.82rem; color: rgba(255,255,255,0.75); text-decoration: none; letter-spacing: 0.05em; text-transform: uppercase; }
+    .footer-socials { display: flex; gap: 10px; margin-top: 20px; }
+    .social-icon { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; text-decoration: none; color: #fff; transition: opacity 0.2s; }
+    .social-icon:hover { opacity: 0.8; }
+    .social-ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+    .social-fb { background: #1877f2; }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; font-size: 0.78rem; color: rgba(255,255,255,0.5); }
+
+    @media (max-width: 900px) {
+      nav { padding: 16px 24px; }
+      .nav-links { gap: 20px; }
+      .page-hero { padding: 48px 24px 40px; }
+      .page-hero h1 { font-size: 2rem; }
+      .project-intro { padding: 0 24px; margin: 40px auto; }
+      .gallery { padding: 0 24px 60px; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-grid .tall { grid-row: span 1; }
+      .gallery-grid .tall img { height: 300px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      footer { padding: 40px 24px 0; }
+      .project-cta { padding: 48px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="images/logo.svg" alt="Arabesque Laser Art Logo"/>
+  </a>
+  <ul class="nav-links">
+    <li><a href="our-story.html">Our Story</a></li>
+    <li><a href="history.html">History of Laser Art</a></li>
+    <li><a href="products.html">Our Products</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <svg class="page-hero-deco left" viewBox="0 0 260 300" fill="none" xmlns="http://www.w3.org/2000/svg"><g fill="white"><polygon points="80,20 90,60 130,50 100,80 120,115 80,95 40,115 60,80 30,50 70,60"/><polygon points="200,150 210,190 250,180 220,210 240,245 200,225 160,245 180,210 150,180 190,190"/><polygon points="60,200 70,230 100,222 78,245 93,272 60,258 27,272 42,245 20,222 50,230"/></g></svg>
+  <svg class="page-hero-deco right" viewBox="0 0 260 300" fill="none" xmlns="http://www.w3.org/2000/svg"><g fill="white"><polygon points="80,20 90,60 130,50 100,80 120,115 80,95 40,115 60,80 30,50 70,60"/><polygon points="200,150 210,190 250,180 220,210 240,245 200,225 160,245 180,210 150,180 190,190"/><polygon points="60,200 70,230 100,222 78,245 93,272 60,258 27,272 42,245 20,222 50,230"/></g></svg>
+  <h1>Qahwah House</h1>
+  <p>Commercial Interior Installation — Columbus, Ohio</p>
+  <div class="page-hero-breadcrumb">
+    <a href="index.html">Home</a> &nbsp;/&nbsp; <a href="index.html#commercial">Featured Projects</a> &nbsp;/&nbsp; Qahwah House
+  </div>
+</div>
+
+<div class="project-intro">
+  <h2>LED Panels, Calligraphy &amp; Custom Displays</h2>
+  <p>Arabesque Laser Art created and installed custom LED light panels, Arabic calligraphy wall art, decorative counter panels, and branded interior displays throughout Qahwah House in Columbus, Ohio. The result is a stunning atmosphere that blends traditional Arabic art with modern design.</p>
+</div>
+
+<div class="gallery">
+  <div class="gallery-grid" id="galleryGrid">
+    <div class="gallery-item wide"><img src="images/Qahwah_house_2.jpg" alt="Qahwah House Interior" onclick="openLightbox(0)"/></div>
+    <div class="gallery-item tall"><img src="images/Qahwah_house_panels_and_calligraphy_with_led.jpg" alt="Qahwah LED Panels" onclick="openLightbox(1)"/></div>
+    <div class="gallery-item"><img src="images/Qahwah_house_3.jpg" alt="Qahwah House" onclick="openLightbox(2)"/></div>
+    <div class="gallery-item"><img src="images/Qahwah_house_4.jpg" alt="Qahwah House" onclick="openLightbox(3)"/></div>
+    <div class="gallery-item"><img src="images/Qahwah_house_panels_and_calligraphy_1.jpg" alt="Qahwah Panels" onclick="openLightbox(4)"/></div>
+    <div class="gallery-item"><img src="images/Qahwah_house_led_2.jpg" alt="Qahwah LED" onclick="openLightbox(5)"/></div>
+    <div class="gallery-item"><img src="images/Qahwah_house_led_3.jpg" alt="Qahwah LED" onclick="openLightbox(6)"/></div>
+    <div class="gallery-item"><img src="images/Qahwah_house_led_4.jpg" alt="Qahwah LED" onclick="openLightbox(7)"/></div>
+    <div class="gallery-item"><img src="images/Qahwah_house_led_5.jpg" alt="Qahwah LED" onclick="openLightbox(8)"/></div>
+  </div>
+</div>
+
+<div class="project-cta">
+  <h2>Want a Similar Transformation?</h2>
+  <p>We work with businesses of all sizes to create custom laser art installations tailored to your brand.</p>
+  <a href="contact.html" class="btn btn-white">Get In Touch</a>
+</div>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+  <button class="lightbox-prev" onclick="changeImage(-1, event)">&#8249;</button>
+  <img id="lightbox-img" src="" alt=""/>
+  <button class="lightbox-next" onclick="changeImage(1, event)">&#8250;</button>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <img src="images/logo.svg" alt="Logo" style="height:42px; width:auto; filter:brightness(0) invert(1);"/>
+      <div class="footer-brand-name">Arabesque Laser Art, <span>llc.</span></div>
+      <p class="footer-desc">Family-owned laser art design studio serving Columbus and Central Ohio.</p>
+    </div>
+    <div class="footer-col">
+      <ul>
+        <li><a href="our-story.html">Our Story</a></li>
+        <li><a href="products.html">Shop Products</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Blog</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <ul>
+        <li><a href="#">Account</a></li>
+        <li><a href="#">Shipping</a></li>
+        <li><a href="#">Returns</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+    <div class="footer-contact-col">
+      <p>Contact Us</p>
+      <a href="mailto:INFO@ARABESQUEART.COM">INFO@ARABESQUEART.COM</a>
+      <div class="footer-socials">
+        <a class="social-icon social-ig" href="#" aria-label="Instagram">&#x1F4F7;</a>
+        <a class="social-icon social-fb" href="#" aria-label="Facebook">f</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>2023 © Arabesque Art, LLC</span>
+    <span>Site by The Media Captain</span>
+  </div>
+</footer>
+
+<script>
+  const images = [
+    'images/Qahwah_house_2.jpg',
+    'images/Qahwah_house_panels_and_calligraphy_with_led.jpg',
+    'images/Qahwah_house_3.jpg',
+    'images/Qahwah_house_4.jpg',
+    'images/Qahwah_house_panels_and_calligraphy_1.jpg',
+    'images/Qahwah_house_led_2.jpg',
+    'images/Qahwah_house_led_3.jpg',
+    'images/Qahwah_house_led_4.jpg',
+    'images/Qahwah_house_led_5.jpg',
+  ];
+  let current = 0;
+
+  function openLightbox(index) {
+    current = index;
+    document.getElementById('lightbox-img').src = images[current];
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox(e) {
+    if (!e || e.target === document.getElementById('lightbox') || e.target.classList.contains('lightbox-close')) {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  }
+
+  function changeImage(dir, e) {
+    if (e) e.stopPropagation();
+    current = (current + dir + images.length) % images.length;
+    document.getElementById('lightbox-img').src = images[current];
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') changeImage(1);
+    if (e.key === 'ArrowLeft') changeImage(-1);
+  });
+</script>
+
+</body>
+</html>
